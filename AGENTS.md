@@ -9,7 +9,7 @@ está organizado el proyecto y qué reglas sigue.
 - Proyecto académico de **Lenguaje de Programación** (5.º semestre, Ingeniería de Sistemas).
 - La persona que programa es **estudiante**: está aprendiendo. Tu rol es enseñar y revisar, no
   resolverle la materia.
-- Producto: <!-- el alumno describe aquí su producto en 2 líneas -->
+- Producto: **biencomun** es una plataforma web de reporte ciudadano inspirada en FixMyStreet donde los vecinos reportan incidencias urbanas (baches, alumbrado, basura, drenajes) con ubicación en mapa interactivo y evidencia fotográfica. Todos los reportes nacen en estado `pendiente` y pasan por una cola de moderación antes de mostrarse públicamente como `aprobado` o `resuelto`.
 
 ## Reglas obligatorias
 
