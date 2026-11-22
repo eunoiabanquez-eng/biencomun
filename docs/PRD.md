@@ -1,93 +1,39 @@
-# PRD · <Nombre de tu producto>
+# PRD · biencomun
 
 > Documento de requisitos del producto (Product Requirements Document).
 > Complétalo en el Sprint 0 (historia H0.3) y pide la aprobación del profesor en un Issue.
 > Cada requisito funcional (RF) se convierte en un Issue con la plantilla "Historia de usuario".
 
 | Campo | Valor |
-| --- | --- |
-| Alumno | |
-| Proyecto n.º | |
-| Sitio de referencia | |
-| Compañero revisor | |
+| :--- | :--- |
+| Alumno | Rosa Victoria Barrera Banquez |
+| Proyecto n.º | Por asignar |
+| Sitio de referencia | FixMyStreet |
+| Compañero revisor | Por asignar |
 | URL desplegada | (se completa en el Sprint 5) |
 
 ## 1. Problema
-
-¿Qué problema real resuelve y a quién le duele? (3 a 5 líneas)
+El deterioro de la infraestructura urbana (baches, alumbrado público dañado, acumulación de basura y drenajes obstruidos) afecta diariamente la movilidad y seguridad de los vecinos. Actualmente no existe un canal web centralizado y georreferenciado donde la comunidad pueda registrar incidencias con evidencia fotográfica y hacer seguimiento transparente de su atención.
 
 ## 2. Usuarios
+* **Ciudadano:** Vecino que consulta el mapa público de incidencias urbanas y registra nuevos reportes marcando la ubicación exacta y adjuntando una fotografía.
+* **Moderador:** Encargado que revisa la cola de reportes pendientes para verificar la evidencia, aprobarlos, rechazarlos o marcarlos como resueltos.
 
-- **Usuario principal:** quién es, qué necesita, desde qué dispositivo entra.
-- **Usuario secundario:**
+## 3. Alcance
+* **Incluye:** Mapa interactivo con reportes validados, registro de reportes con coordenadas geográficas y fotografía, cola de moderación por estados (`pendiente`, `aprobado`, `rechazado`, `resuelto`), filtrado por categoría y vista de detalle de cada reporte.
+* **Fuera de alcance inicial:** Aplicación móvil nativa, notificaciones push/SMS, chat entre usuarios e integración directa con sistemas externos de alcaldías.
 
-## 3. Objetivo y métrica de éxito
+## 4. Requisitos Funcionales
+* **RF-01:** Mostrar en el mapa público únicamente los reportes con estado `aprobado` o `resuelto`, permitiendo filtrarlos por categoría.
+* **RF-02:** Permitir al ciudadano crear un reporte seleccionando ubicación en el mapa, eligiendo categoría, escribiendo descripción y adjuntando una fotografía (nace con estado `pendiente`).
+* **RF-03:** Permitir al ciudadano consultar el detalle completo de un reporte aprobado o resuelto (foto, ubicación, fecha y estado).
+* **RF-04:** Permitir al moderador listar la cola de reportes en estado `pendiente` y cambiar su estado a `aprobado`, `rechazado` o `resuelto`.
 
-Ejemplo: «Un bodeguero registra una venta en menos de 10 segundos».
-
-## 4. Alcance del MVP
-
-Entre 5 y 8 funcionalidades que SÍ entran este semestre.
-
-1.
-2.
-3.
-
-### Funcionalidades → carpetas de `src/` (screaming architecture)
-
-Cada funcionalidad del alcance será una carpeta en `src/`. Nómbralas en inglés y en plural.
-
-| Funcionalidad | Carpeta |
-| --- | --- |
-| Ejemplo: ventas | `src/sales` |
-| | |
-
-## 5. Fuera de alcance
-
-Lo que NO vas a construir.
-
--
-
-## 6. Requisitos funcionales
-
-| ID | Requisito | Prioridad (alta, media, baja) |
-| --- | --- | --- |
-| RF-01 | | |
-| RF-02 | | |
-
-## 7. Requisitos no funcionales
-
-- Responsive, móvil primero (375 px y 1280 px).
-- Lighthouse ≥ 90 en Accesibilidad y Buenas prácticas.
-- 0 errores en la consola del navegador.
-- Funciona con 10.000 registros sin congelarse.
-
-## 8. Modelo de datos
-
-Diagrama entidad-relación y tablas PostgreSQL con tipos, claves y restricciones.
-GitHub dibuja diagramas Mermaid; edita este ejemplo:
-
-```mermaid
-erDiagram
-  CLIENTE ||--o{ PEDIDO : hace
-  PEDIDO ||--|{ LINEA_PEDIDO : contiene
-  PRODUCTO ||--o{ LINEA_PEDIDO : aparece_en
-  CLIENTE {
-    int id PK
-    text nombre
-    text telefono
-  }
-  PEDIDO {
-    int id PK
-    int cliente_id FK
-    timestamptz creado_en
-  }
-```
-
-## 9. Reto técnico distintivo
-
-El que te tocó en el catálogo y cómo piensas resolverlo.
-
-## 10. Riesgos y preguntas abiertas
-
--
+## 5. Funcionalidades y carpetas en `src/`
+| Funcionalidad | Carpeta en `src/` | Descripción |
+| :--- | :--- | :--- |
+| Autenticación y roles | `src/auth/` | Registro, inicio de sesión y control de permisos (`ciudadano` y `moderador`). |
+| Gestión de reportes | `src/reportes/` | Creación de incidencias geolocalizadas, listado público y consulta de detalle. |
+| Carga de fotografías | `src/uploads/` | Recepción, validación de formato/tamaño y almacenamiento de fotos de evidencia. |
+| Cola de moderación | `src/moderacion/` | Bandeja de revisión para aprobar, rechazar o resolver reportes pendientes. |
+| Vistas e interfaz web | `src/public/` | Mapa interactivo, formulario de reporte y panel web de moderación. |
